@@ -12,7 +12,17 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^7.2.9"
+    "@iconify-json/lucide": "^1.2.128",
+    "@iconify-json/mdi": "^1.2.3",
+    "@iconify-json/simple-icons": "^1.2.94",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.2.9",
+    "astro-icon": "^1.2.0",
+    "greensock": "^1.20.2",
+    "gsap": "^3.15.0",
+    "simple-icons": "^16.29.0",
+    "split-type": "^0.3.4",
+    "tailwindcss": "^4.3.3"
   },
   "allowScripts": {
     "esbuild": true
