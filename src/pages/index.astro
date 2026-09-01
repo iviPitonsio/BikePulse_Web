@@ -2,6 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import Summary from '../components/Summary.astro';
 import Ranking from '../components/Ranking.astro';
+import StationList from '../components/StationList.astro';
+import FullStations from '../components/FullStations.astro';
+import EmptyStations from '../components/EmptyStations.astro';
 ---
 
 <Layout>
@@ -9,9 +12,21 @@ import Ranking from '../components/Ranking.astro';
 	
 	<Summary/>
 
-	<div class="mt-25"/>
+		<div class="mt-25"/>
 
 	<Ranking/>
+
+		<div class="mt-25"/>
+	
+	<FullStations/>
+
+		<div class="mt-25"/>
+
+	<EmptyStations/>
+
+		<div class="mt-25"/>
+
+	<StationList/>
 
 	</div>
 </Layout>

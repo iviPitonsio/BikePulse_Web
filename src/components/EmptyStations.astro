@@ -4,12 +4,11 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <div class="flex flex-col gap-5 items-center text-center w-full">
-    <h1 id="title02" class="font-bold text-4xl"> Estaciones con más bicicletas: </h1>
-    <span id="color_bar02" class="anim-color-bar h-1 rounded-full md:w-125 lg:w-125 w-65 bg-blue-600 shadow-[0_0_12px_#52BAFF,0_0_12px_#52BAFF]"/>
+    <h1 id="title05" class="font-bold text-4xl"> Estaciones vacías </h1>
+    <span id="color_bar05" class="anim-color-bar h-1 rounded-full md:w-80 lg:w-80 w-50 bg-blue-600 shadow-[0_0_12px_#52BAFF,0_0_12px_#52BAFF]"/>
 
-    <div id="ranking" class="invisible flex flex-col max-w-2xl text-left mx-auto md:text-3xl lg:text-3xl text-1xl gap-2"/>
-
-
+    <div id="empty-stations" class="flex flex-col max-w-2xl text-left mx-auto md:text-2xl lg:text-2xl text-base gap-2"/>
+        
 </div>
 
 <script>
@@ -19,10 +18,10 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
-    let title02 = new SplitType('#title02');
+    let title05 = new SplitType('#title05');
     
     
-    gsap.from(title02.chars, {
+    gsap.from(title05.chars, {
         y: '100%',
         stagger: 0.05,
         delay: 0.2,
@@ -31,24 +30,24 @@ gsap.registerPlugin(ScrollTrigger);
         autoAlpha: 0,
 
         scrollTrigger: {
-            trigger: "#title02",
+            trigger: "#title05",
             start: "top 80%",
     }
     });
 
-    gsap.from('#color_bar02', {
+    gsap.from('#color_bar05', {
         y: '100%',
         delay: 1.5,
         duration: 1.0,
         autoAlpha: 0,
         scrollTrigger: {
-            trigger: "#title02",
+            trigger: "#title05",
             start: "top 80%",
     }
     });
 
-    gsap.fromTo('#ranking', { 
-        x: '-200%'
+    gsap.fromTo('#empty-stations', { 
+        x: '-400%'
         },
         {
         x:0,
@@ -58,7 +57,7 @@ gsap.registerPlugin(ScrollTrigger);
         autoAlpha: 1,
         clearProps: 'transform',
         scrollTrigger: {
-            trigger: "#title02",
+            trigger: "#title05",
             start: "top 80%",
         }
     });
