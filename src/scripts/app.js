@@ -83,20 +83,13 @@ function createStationElement(resultado) {
     const stationsContainer = document.getElementById('stations');
     stationsContainer.innerHTML = ''; // Limpiamos el contenedor antes de agregar los elementos filtrados
     resultado.forEach(estacion => {
-        const elemento = document.createElement('button'); // creamos un botón para cada estación
+        const elemento = document.createElement('a'); // creamos un botón para cada estación
 
         elemento.textContent = estacion.name[0].text;
         stationsContainer.appendChild(elemento); // mostramos el nombre de la estacion en el contenedor
 
-        elemento.addEventListener("click", async () => {
-                    
-        const responseStation = await fetch(`http://localhost:8080/station/${estacion.station_id}`); // guardamos los datos de la estación en concreto
-        const dataStation = await responseStation.json();
-            console.log(estacion.station_id);
+        elemento.href = "/station.html?station_id=" + estacion.station_id; // redirigimos a la página de la estación con el id de la estación en la url
 
-
-        });
     });
-}
 
-//cursor-pointer
+}

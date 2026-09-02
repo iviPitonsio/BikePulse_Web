@@ -1,0 +1,163 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+---
+
+<Layout>
+    <div class="flex flex-col text-center items-center mt-15 gap-5">
+
+        <h1 id="stationTitle" class="font-bold md:text-6xl lg:text-6xl text-5xl"/>
+        <span id="color_bar" class="invisible h-1 rounded-full md:w-75 lg:w-75 w-55 bg-blue-600 shadow-[0_0_12px_#52BAFF,0_0_12px_#52BAFF]"/>
+
+        <p id="date"/> 
+
+        <div id="info" class="grid grid-cols-3 justify-items-center text-center md:text-3xl lg:text-3xl text-1xl font-bold w-full max-w-7xl h-full mt-15 md:gap-30 lg:gap-30 gap-25">
+
+            <p id="availableBikes"/>
+            <p id="renting"/>
+            <p id="returning"/>       
+
+        </div>
+
+        <h1 id="data" class="font-bold md:text-5xl lg:text-5xl text-4xl mt-25"> Datos Básicos:</h1>
+        <span id="color_bar" class="invisible h-1 rounded-full md:w-75 lg:w-75 w-55 bg-blue-600 shadow-[0_0_12px_#52BAFF,0_0_12px_#52BAFF]"/>
+
+        <div id="basicInfo" class="grid grid-cols-3 justify-items-center text-center md:text-3xl lg:text-3xl text-1xl font-bold w-full max-w-7xl h-full mt-15 md:gap-30 lg:gap-30 gap-25">
+
+            <p id="address"/>
+            <p id="capacity"/>
+            <p id="is_charging_station"/>    
+            <p id="is_virtual_station"/>
+            <p id="post_code"/> 
+
+        </div>
+
+        <h1 id="data" class="font-bold md:text-5xl lg:text-5xl text-4xl mt-25"> ¡Consulta su historial!</h1>
+        <span id="color_bar" class="invisible h-1 rounded-full md:w-75 lg:w-75 w-55 bg-blue-600 shadow-[0_0_12px_#52BAFF,0_0_12px_#52BAFF]"/>
+
+        <a href="/services" class="block text-white font-bold p-3 bg-black border border-white rounded-4xl transition-all duration-300 hover:scale-105 mt-5"> Historial</a>
+
+        <div id="status" class="flex flex-col gap-5"/>
+
+    </div>
+</Layout>
+
+<script>
+
+const params = new URLSearchParams(window.location.search); // Obtener los parámetros de la URL
+const stationId = params.get('station_id'); // Obtener el valor del parámetro 'station_id' y lo guardamos en una variable
+
+const responseStationStatus = await fetch(`http://localhost:8080/station/${stationId}/status`); // obtenemos los datos de la estación desde el backend
+const dataStationStatus = await responseStationStatus.json();
+
+
+
+// Mostramos los datos más recientes del estado de cada estación
+
+const stationTitle = document.getElementById('stationTitle');
+    if (stationTitle) {
+        stationTitle.textContent = dataStationStatus.name; // mostramos el nombre de la estación en el título
+    }
+
+const stationDate = document.getElementById('date');
+    if (stationDate) {
+        stationDate.textContent = 'Última actualización: ' + formatearFecha(dataStationStatus.date); // mostramos la fecha actual
+    }
+
+const stationAvailableBikes = document.getElementById('availableBikes');
+    if (stationAvailableBikes) {
+        stationAvailableBikes.textContent = 'Bicicletas disponibles: ' + dataStationStatus.availableBikes; // mostramos el número de bicicletas disponibles
+    }
+
+const stationRenting = document.getElementById('renting');
+    if (stationRenting) {
+        if(dataStationStatus.renting){ // Mostramos si la estación permite alquilar bicicletas o no
+            stationRenting.textContent = 'Permite alquilar'
+        } else {
+            stationRenting.textContent = 'No permite alquilar'
+        }
+    }
+
+const stationReturning = document.getElementById('returning');
+    if (stationReturning) {
+        if(dataStationStatus.returning){ // Mostramos si la estación permite devolver bicicletas o no
+            stationReturning.textContent = 'Permite devolver'
+        } else {
+            stationReturning.textContent = 'No permite devolver'
+        }
+    }
+
+
+function formatearFecha(fecha: string) {
+    return new Date(fecha).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+} 
+
+
+
+
+// Mostramos los datos básicos de cada estación
+const responseStation = await fetch(`http://localhost:8080/station/${stationId}`); // obtenemos los datos de la estación desde el backend
+const dataStation = await responseStation.json();
+
+const stationAddress = document.getElementById('address');
+    if (stationAddress) {
+        stationAddress.textContent = 'Dirección: ' + dataStation.address; // mostramos la dirección de la estación
+    }
+
+const stationCapacity = document.getElementById('capacity');
+    if (stationCapacity) {
+        stationCapacity.textContent = 'Capacidad: ' + dataStation.capacity; // mostramos la capacidad de la estación
+    }
+
+const stationIsChargingStation = document.getElementById('is_charging_station');
+    if (stationIsChargingStation) {
+        if(dataStation.is_charging_station){ // Mostramos si la estación es de carga o no
+            stationIsChargingStation.textContent = 'Es una estación de carga'
+        } else {
+            stationIsChargingStation.textContent = 'No es una estación de carga'
+        }
+    }
+
+const stationIsVirtualStation = document.getElementById('is_virtual_station');
+    if (stationIsVirtualStation) {
+        if(dataStation.is_virtual_station){ // Mostramos si la estación es virtual o no
+            stationIsVirtualStation.textContent = 'Es una estación virtual'
+        } else {
+            stationIsVirtualStation.textContent = 'No es una estación virtual'
+        }
+    }
+
+const stationPostCode = document.getElementById('post_code');
+    if (stationPostCode) {
+        stationPostCode.textContent = 'Código postal: ' + dataStation.post_code; // mostramos el código postal de la estación
+    }
+
+
+
+
+// Mostramos el historial de cada estación
+const responseStationHistory = await fetch(`http://localhost:8080/station/${stationId}/history`); // obtenemos los datos de la estación desde el backend
+const dataStationHistory = await responseStationHistory.json();
+
+dataStationHistory.forEach((estado: any) => {
+
+    const elemento = document.createElement('div'); // creamos el contenedor de cada uno de los estados
+
+    let renting = estado.is_renting ? 'Permite alquilar' : 'No permite alquilar';
+    let installed = estado.is_installed ? 'Instalada' : 'No instalada';
+    let returning = estado.is_returning ? 'Permite devolver' : 'No permite devolver';
+
+
+    elemento.textContent = 'Última actualización: ' + formatearFecha(estado.last_reported) + 
+    '\nBicis disponibles: ' + estado.num_vehicles_available + ' | Bicis en mantenimiento: ' + estado.num_vehicles_disabled + // mostramos la fecha actual
+    ' \nHuecos disponibles: ' + estado.num_docks_available + ' | Huecos en mantenimiento: ' + estado.num_docks_disabled + // mostramos el historial de la estación; 
+    '\n' + renting + ' | ' + installed + ' | ' + returning; // mostramos el estado de la estación;
+
+    const status = document.getElementById('status');
+    if (status) {
+        status.appendChild(elemento);
+    }
+
+});
+
+</script>
