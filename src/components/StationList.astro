@@ -6,7 +6,9 @@ import Layout from '../layouts/Layout.astro';
 <div class="flex flex-col gap-5 items-center text-center w-full">
     <h1 class="title font-bold text-4xl" data-trigger="scroll"> Lista de Estaciones </h1>
     
-    <input type="text" placeholder="Buscar estación..." id="searchStation" class="w-75 max-w-1xl px-4 py-2 rounded-2xl bg-black text-white focus:outline-none focus:ring-2 focus:ring-blue-600" data-trigger="scroll"/>
+    <p class="text text-base">Seleccciona una para más información</p>
+
+    <input type="text" placeholder="Buscar estación..." id="searchStation" class="md:w-75 lg:w-75 w-50 max-w-1xl px-4 py-2 rounded-2xl bg-black text-white border border-green-500 focus:outline-none focus:ring-2 focus:ring-green-400" data-trigger="scroll"/>
 
     <div id="stations" class="flex flex-col max-w-2xl text-center mx-auto md:text-2xl lg:text-2xl text-base gap-2"/>
         

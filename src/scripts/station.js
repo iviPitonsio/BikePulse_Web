@@ -110,8 +110,8 @@ dataStationHistory.forEach((estado) => {
 
 
     elemento.textContent = fechaGrafica(estado.last_reported) + ' => ' + // mostramos la fecha actual
-    '🚲: ' + estado.num_vehicles_available +  
-    ' | 🅿: ' + estado.num_docks_available + ' | ' + // mostramos el historial de la estación; 
+    'Bicis: ' + estado.num_vehicles_available +  
+    ' | Huecos: ' + estado.num_docks_available + ' | ' + // mostramos el historial de la estación; 
      renting + ' | ' + installed + ' | ' + returning; // mostramos el estado de la estación;
 
    
@@ -140,6 +140,7 @@ const bicis = datosGrafica.map((dato) => { // Creamos un nuevo array solo con la
     return dato.bicis;
 });
 
+
 const stationChart = document.getElementById('stationChart').getContext('2d'); // creamos la gráfica de la estación
 
 const chart = new Chart(stationChart, {
@@ -149,7 +150,7 @@ const chart = new Chart(stationChart, {
         datasets: [{
             label: 'Bicicletas Disponibles',
         data: bicis,
-        borderColor: 'rgb(75, 192, 192)',
+        borderColor: 'rgb(0, 179, 70)',
         backgroundColor: 'rgba(75, 192, 192, 0.2)'
     }]
     },

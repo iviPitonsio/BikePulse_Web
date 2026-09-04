@@ -5,13 +5,14 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout> 
 
-    <div class="w-full max-w-[75%] md:max-w-full mx-auto px-2 gap-25">
+    <div class="w-full max-w-[75%] md:max-w-full mx-auto px-2 gap-25"> <!-- Ajuste para móviles -->
         <div class="flex flex-col text-center items-center mt-15 gap-5">
 
-            <h1 id="stationTitle" class="title font-bold md:text-6xl lg:text-6xl text-5xl"/>
+            <h1 id="stationTitle" class="title font-bold md:text-6xl lg:text-6xl text-5xl"/> <!-- Titulo de la estación -->
 
-            <p id="date" class="text mt-10 text-2xl"/> 
+            <p id="date" class="text mt-10 md:text-2xl, lg:text-2xl"/>  <!-- Fecha de la actualización -->
 
+            <!-- Info del último estado de la estación -->
             <div id="info" class="grid md:grid-cols-3 lg:grid-cols-3 grid-cols-1 justify-items-center text-center md:text-3xl lg:text-3xl text-1xl font-bold w-full max-w-7xl h-full mt-10 md:gap-30 lg:gap-30 gap-5">
 
                 <p id="availableBikes" class="card" data-trigger="inmediate"/>
@@ -27,8 +28,8 @@ import Layout from '../layouts/Layout.astro';
 
             </div>
 
-            
 
+            <!-- Datos básicos de la estación -->
             <h2 class="text font-bold md:text-5xl lg:text-5xl text-4xl mt-25"> Datos:</h2>
             
             <div class="grid grid-cols-2 justify-items-center text-center md:text-3xl lg:text-3xl text-1xl font-bold w-full max-w-7xl h-full lg:mt-15 md:mt:15 mt-5 md:gap-30 lg:gap-30 gap-15">
@@ -40,18 +41,22 @@ import Layout from '../layouts/Layout.astro';
 
             </div>
 
+
+            <!-- Gráfica -->
             <h2 class="title font-bold md:text-5xl lg:text-5xl text-4xl mt-15"> Disponibilidad de bicicletas:</h2>
             <canvas id="stationChart" class="card w-full h-full md:max-h-[25%] lg:max-h-[25%] max-h-[15%] md:max-w-[65%] lg:md:max-w-[65%] md:md:max-w-[65%] max-w-full mx-auto mt-5"/>
 
-            <h2 class="title font-bold md:text-5xl lg:text-5xl text-4xl mt-5"> Historial</h2>
-            <div id="status" class="text flex flex-col gap-5"/>
+            <!-- Historial -->
+            <h2 class="title font-bold md:text-5xl lg:text-5xl text-4xl mt-15"> Historial</h2>
+            <div id="status" class="text flex flex-col gap-5 bg-black rounded-2xl border border-green-500 p-5"/>
 
+            <!-- Botón de regreso -->
+            <div class="text-center mt-15 font-bold transition-all duration-150 hover:scale-105">
+                <a href="/" class="bg-black border-2 border-green-500 rounded-2xl md:text-3xl lg:text-3xl text-2xl p-5"> Volver</a>
+            </div>
+        
         </div>
-
-        <div class="ml-40 mt-15 text-left font-bold md:text-3xl lg:text-3xl text-2xl hover:underline">
-            <a href="/" > Volver</a>
-        </div>
-
+    
     </div>
 
 </Layout>

@@ -141,7 +141,7 @@ function createStationElement(resultado) {
         
 
         // Determinamos las características de los contenedores y la barra
-        mainContainer.classList.add('bg-black', 'rounded-xl', 'p-4', 'flex', 'flex-col', 'border',  'border-white', 'mb-5', 'w-full', 'max-w-md', 'w-125', 'transition-all', 'duration-300', 'hover:scale-105');
+        mainContainer.classList.add('bg-black', 'rounded-xl', 'p-4', 'flex', 'flex-col', 'border-2',  'border-green-400', 'mb-5', 'w-full', 'max-w-md', 'w-125', 'transition-all', 'duration-300', 'hover:scale-105', 'hover:ring-green-400', 'hover:ring-2');
         
         container01.classList.add('flex', 'justify-between');
         container02.classList.add('w-full', 'bg-gray-800', 'rounded-xl', 'h-5');

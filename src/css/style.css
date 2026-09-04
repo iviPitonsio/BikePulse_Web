@@ -2,7 +2,7 @@
 
 body {
   white-space: pre-line;
-  background: #1d8b6f;
+  background: black;
   color: white;
   font-family: 'valve', sans-serif;
 }
@@ -11,7 +11,7 @@ body {
   background-color: black; 
   border: 1px solid;
   border-radius: 15px;
-  border-color: white;
+  border-color: rgb(71, 255, 104);
   padding: 15px;
   visibility: hidden;
 }
@@ -24,3 +24,56 @@ body {
 .title {
     visibility: hidden;
 }
+
+
+/* Fondo */
+.grid-bg {
+    /* Altura y anchura para cubrir la pantalla */
+    width: 100%;
+    min-height: 100vh;
+
+	  background-color: black; 
+	  color: rgb(255, 255, 255);
+
+    position: relative;
+    
+    background-image: 
+      linear-gradient(to right, rgba(84, 254, 189, 0.3) 2px, transparent 1px),
+      linear-gradient(to bottom, rgba(84, 254, 189, 0.3) 2px, transparent 1px);
+    
+      background-size: 120px 120px;
+
+	animation: anim 5s linear infinite;
+}
+
+  @keyframes anim {
+	from { background-position: 0 0; }
+	to   { background-position: 120px 120px; }
+	}
+
+
+  .grid-bg::before {
+
+    background-image: 
+      linear-gradient(to right, rgba(84, 254, 189, 0.1) 2px, transparent 1px),
+      linear-gradient(to bottom, rgba(84, 254, 189, 0.1) 2px, transparent 1px);
+    
+      background-size: 120px 120px;
+
+      content: "";
+
+      position: absolute;
+
+      inset: -120px 0 0 0;
+
+      z-index: -10;
+
+	animation: animReverse 10s linear infinite;
+  }
+
+  @keyframes animReverse {
+	from { background-position: 120px 120px; }
+	to   { background-position: 0 0; }
+	}
+
+  
