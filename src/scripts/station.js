@@ -25,6 +25,16 @@ const stationAvailableBikes = document.getElementById('availableBikes');
         stationAvailableBikes.textContent = 'Bicicletas disponibles: ' + dataStationStatus.availableBikes; // mostramos el número de bicicletas disponibles
     }
 
+const stationAvailableDocks = document.getElementById('availableDocks');
+    if (stationAvailableDocks) {
+        stationAvailableDocks.textContent = 'Espacios disponibles: ' + dataStationStatus.availableDocks; // mostramos el número de espacios disponibles
+    }
+
+const stationCapacity = document.getElementById('capacity');
+    if (stationCapacity) {
+        stationCapacity.textContent = 'Capacidad:\n' + dataStationStatus.capacity; // mostramos la capacidad de la estación
+    }
+
 const stationRenting = document.getElementById('renting');
     if (stationRenting) {
         if(dataStationStatus.renting){ // Mostramos si la estación permite alquilar bicicletas o no
@@ -60,32 +70,27 @@ const stationAddress = document.getElementById('address');
         stationAddress.textContent = 'Dirección: ' + dataStation.address; // mostramos la dirección de la estación
     }
 
-const stationCapacity = document.getElementById('capacity');
-    if (stationCapacity) {
-        stationCapacity.textContent = 'Capacidad: ' + dataStation.capacity; // mostramos la capacidad de la estación
-    }
-
 const stationIsChargingStation = document.getElementById('is_charging_station');
     if (stationIsChargingStation) {
         if(dataStation.is_charging_station){ // Mostramos si la estación es de carga o no
-            stationIsChargingStation.textContent = 'Es una estación de carga'
+            stationIsChargingStation.textContent = 'Es una estación\n de carga'
         } else {
-            stationIsChargingStation.textContent = 'No es una estación de carga'
+            stationIsChargingStation.textContent = 'No es una estación\n de carga'
         }
     }
 
 const stationIsVirtualStation = document.getElementById('is_virtual_station');
     if (stationIsVirtualStation) {
         if(dataStation.is_virtual_station){ // Mostramos si la estación es virtual o no
-            stationIsVirtualStation.textContent = 'Es una estación virtual'
+            stationIsVirtualStation.textContent = 'Es una estación\n virtual'
         } else {
-            stationIsVirtualStation.textContent = 'No es una estación virtual'
+            stationIsVirtualStation.textContent = 'No es una\n estación virtual'
         }
     }
 
 const stationPostCode = document.getElementById('post_code');
     if (stationPostCode) {
-        stationPostCode.textContent = 'Código postal: ' + dataStation.post_code; // mostramos el código postal de la estación
+        stationPostCode.textContent = 'Código postal:\n ' + dataStation.post_code; // mostramos el código postal de la estación
     }
 
 
@@ -99,15 +104,15 @@ dataStationHistory.forEach((estado) => {
 
     const elemento = document.createElement('div'); // creamos el contenedor de cada uno de los estados
 
-    let renting = estado.is_renting ? 'Permite alquilar' : 'No permite alquilar';
-    let installed = estado.is_installed ? 'Instalada' : 'No instalada';
-    let returning = estado.is_returning ? 'Permite devolver' : 'No permite devolver';
+    let renting = estado.is_renting ? 'Alquilar🟢' : 'Alquilar🔴';
+    let installed = estado.is_installed ? 'Instalada🟢' : 'Instalada🔴';
+    let returning = estado.is_returning ? 'Devolver🟢' : 'Devolver🔴';
 
 
-    elemento.textContent = 'Última actualización: ' + formatearFecha(estado.last_reported) + 
-    '\nBicis disponibles: ' + estado.num_vehicles_available + ' | Bicis en mantenimiento: ' + estado.num_vehicles_disabled + // mostramos la fecha actual
-    ' \nHuecos disponibles: ' + estado.num_docks_available + ' | Huecos en mantenimiento: ' + estado.num_docks_disabled + // mostramos el historial de la estación; 
-    '\n' + renting + ' | ' + installed + ' | ' + returning; // mostramos el estado de la estación;
+    elemento.textContent = fechaGrafica(estado.last_reported) + ' => ' + // mostramos la fecha actual
+    '🚲: ' + estado.num_vehicles_available +  
+    ' | 🅿: ' + estado.num_docks_available + ' | ' + // mostramos el historial de la estación; 
+     renting + ' | ' + installed + ' | ' + returning; // mostramos el estado de la estación;
 
    
 
@@ -183,11 +188,14 @@ const chart = new Chart(stationChart, {
 
       const dataX = chart.scales.x.getValueForPixel(canvasPosition.x);
       const dataY = chart.scales.y.getValueForPixel(canvasPosition.y);
-    }
+    },
+
+    maintainAspectRatio: false, // Permite que el CSS del contenedor controle la altura
   
   
 }});
 
 function fechaGrafica(fecha) {
     return new Date(fecha).toLocaleDateString('es-ES', {month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' });
-} 
+}
+

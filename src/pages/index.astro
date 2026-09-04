@@ -5,30 +5,35 @@ import Ranking from '../components/Ranking.astro';
 import StationList from '../components/StationList.astro';
 import FullStations from '../components/FullStations.astro';
 import EmptyStations from '../components/EmptyStations.astro';
+
 ---
 
 <Layout>
+	
 	<div class="w-full max-w-[75%] md:max-w-full mx-auto px-2 gap-25">
 	
-	<Summary/>
+		<Summary/>
 
-		<div class="mt-25"/>
+			<div class="mt-25"/>
 
-	<Ranking/>
+		<Ranking/>
 
-		<div class="mt-25"/>
-	
-	<FullStations/>
+			<div class="mt-25"/>
 
-		<div class="mt-25"/>
+		<div class="grid md:grid-cols-2 lg:grid-cols-2 grid-cols-1 justify-center items-start gap-5 w-full h-full">
+		
+			<FullStations/>
+			
+			<EmptyStations/>
 
-	<EmptyStations/>
+		</div>
 
-		<div class="mt-25"/>
+			<div class="mt-25"/>
 
-	<StationList/>
+		<StationList/>
 
 	</div>
+	
 </Layout>
 
 <script>

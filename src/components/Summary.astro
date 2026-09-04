@@ -5,20 +5,20 @@ import Layout from '../layouts/Layout.astro';
 
 <div class="flex flex-col text-center items-center mt-15 gap-5">
 
-    <h1 id="title" class="font-bold md:text-6xl lg:text-6xl text-5xl"> Bikepulse</h1>
-    <span id="color_bar" class="invisible h-1 rounded-full md:w-75 lg:w-75 w-55 bg-blue-600 shadow-[0_0_12px_#52BAFF,0_0_12px_#52BAFF]"/>
-    <p id="text" class="md:text-1xl lg:text-1xl mt-5"> Un proyecto pensado para ofrecer información sobre el estado de las estaciones de bicicletas de la ciudad de A Coruña.</p>
+    <h1 class="title font-bold md:text-6xl lg:text-6xl text-5xl" data-trigger="inmediate"> Bikepulse</h1>
+    
+    <p class="invisible md:text-1xl lg:text-1xl mt-10 text" data-trigger="inmediate"> Un proyecto pensado para ofrecer información sobre el estado de las estaciones de bicicletas de la ciudad de A Coruña.</p>
 
 
-    <div id="info" class="grid grid-cols-2 justify-items-center text-center md:text-3xl lg:text-3xl text-1xl font-bold w-full max-w-7xl h-full mt-15 md:gap-30 lg:gap-30 gap-25">
+    <div id="info" class="grid grid-cols-2 justify-items-center text-center md:text-3xl lg:text-3xl text-1xl font-bold w-full max-w-7xl h-full mt-10 md:gap-20 lg:gap-20 gap-15" data-trigger="inmediate">
 
-        <p id="estaciones_totales"/>
-        <p id="estaciones_activas"/>
-        <p id="bicis_totales"/>
-        <p id="huecos_totales"/>
+        <p id="estaciones_totales" class="card"/>
+        <p id="estaciones_activas" class="card"/>
+        <p id="bicis_totales" class="card"/>
+        <p id="huecos_totales" class="card"/>
 
         <div class="col-span-2 flex justify-center items-center">
-           <p id="capacidad_total"/>
+           <p id="capacidad_total" class="card"/>
         </div>
         
 
@@ -28,67 +28,6 @@ import Layout from '../layouts/Layout.astro';
 
 <script>
 
-import SplitType from "split-type";
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-gsap.registerPlugin(ScrollTrigger);
-
-    // Animaciones
-
-    let title = new SplitType('#title');
-    
-    
-    gsap.from(title.chars, {
-        y: '100%',
-        stagger: 0.05,
-        delay: 0.2,
-        duration: 0.5,
-        ease: 'power2.out',
-        autoAlpha: 0,
-
-        scrollTrigger: {
-            trigger: "#title",
-            start: "top 100%",
-    }
-    });
-
-    gsap.from('#text', {
-        y: '100%',
-        delay: 1.5,
-        duration: 1.0,
-        ease: 'power2.out',
-        autoAlpha: 0,
-        scrollTrigger: {
-            trigger: "#title",
-            start: "bottom 95%",
-    }
-    });
-
-    gsap.from('#color_bar', {
-        y: '100%',
-        delay: 1.0,
-        duration: 1.0,
-        autoAlpha: 0,
-        scrollTrigger: {
-            trigger: "#title",
-            start: "top 100%",
-    }
-    });
-
-    gsap.fromTo('#info', { 
-        x: '-200%'
-        },
-        {
-        x:0,
-        delay: 2.0,
-        duration: 2.0,
-        ease: 'power2.out',
-        autoAlpha: 1,
-        clearProps: 'transform',
-        scrollTrigger: {
-            trigger: "#title",
-            start: "top 100%",
-        }
-    });
+import '../scripts/animations.js';
 
 </script>

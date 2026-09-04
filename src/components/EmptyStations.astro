@@ -3,63 +3,15 @@ import Layout from '../layouts/Layout.astro';
 
 ---
 
-<div class="flex flex-col gap-5 items-center text-center w-full">
-    <h1 id="title05" class="font-bold text-4xl"> Estaciones vacías </h1>
-    <span id="color_bar05" class="anim-color-bar h-1 rounded-full md:w-80 lg:w-80 w-50 bg-blue-600 shadow-[0_0_12px_#52BAFF,0_0_12px_#52BAFF]"/>
-
-    <div id="empty-stations" class="flex flex-col max-w-2xl text-left mx-auto md:text-2xl lg:text-2xl text-base gap-2"/>
+<div class="flex flex-col gap-5 items-center text-center w-full mt-25 md:mt-0 lg:mt-0">
+    <h1 class="title font-bold text-4xl" data-trigger="scroll"> Estaciones vacías </h1>
+    
+    <ul id="empty-stations" class="flex flex-col card text-left mx-auto md:text-2xl lg:text-2xl text-base gap-2 card list-disc list-inside" data-trigger="scroll"/>
         
 </div>
 
 <script>
 
-import SplitType from "split-type";
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-gsap.registerPlugin(ScrollTrigger);
-
-    let title05 = new SplitType('#title05');
-    
-    
-    gsap.from(title05.chars, {
-        y: '100%',
-        stagger: 0.05,
-        delay: 0.2,
-        duration: 0.5,
-        ease: 'power2.out',
-        autoAlpha: 0,
-
-        scrollTrigger: {
-            trigger: "#title05",
-            start: "top 80%",
-    }
-    });
-
-    gsap.from('#color_bar05', {
-        y: '100%',
-        delay: 1.5,
-        duration: 1.0,
-        autoAlpha: 0,
-        scrollTrigger: {
-            trigger: "#title05",
-            start: "top 80%",
-    }
-    });
-
-    gsap.fromTo('#empty-stations', { 
-        x: '-400%'
-        },
-        {
-        x:0,
-        delay: 2.0,
-        duration: 2.0,
-        ease: 'power2.out',
-        autoAlpha: 1,
-        clearProps: 'transform',
-        scrollTrigger: {
-            trigger: "#title05",
-            start: "top 80%",
-        }
-    });
+import '../scripts/animations.js';
 
 </script>

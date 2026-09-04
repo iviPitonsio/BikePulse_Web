@@ -4,10 +4,9 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <div class="flex flex-col gap-5 items-center text-center w-full">
-    <h1 id="title03" class="font-bold text-4xl"> Lista de Estaciones </h1>
-    <span id="color_bar03" class="anim-color-bar h-1 rounded-full md:w-80 lg:w-80 w-50 bg-blue-600 shadow-[0_0_12px_#52BAFF,0_0_12px_#52BAFF]"/>
-
-    <input type="text" placeholder="Buscar estación..." id="searchStation" class="w-75 max-w-1xl px-4 py-2 rounded-2xl bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-600"/>
+    <h1 class="title font-bold text-4xl" data-trigger="scroll"> Lista de Estaciones </h1>
+    
+    <input type="text" placeholder="Buscar estación..." id="searchStation" class="w-75 max-w-1xl px-4 py-2 rounded-2xl bg-black text-white focus:outline-none focus:ring-2 focus:ring-blue-600" data-trigger="scroll"/>
 
     <div id="stations" class="flex flex-col max-w-2xl text-center mx-auto md:text-2xl lg:text-2xl text-base gap-2"/>
         
@@ -15,51 +14,23 @@ import Layout from '../layouts/Layout.astro';
 
 <script>
 
-import SplitType from "split-type";
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
-    let title03 = new SplitType('#title03');
-    
-    
-    gsap.from(title03.chars, {
-        y: '100%',
-        stagger: 0.05,
-        delay: 0.2,
-        duration: 0.5,
-        ease: 'power2.out',
-        autoAlpha: 0,
-
-        scrollTrigger: {
-            trigger: "#title03",
-            start: "top 80%",
-    }
-    });
-
-    gsap.from('#color_bar03', {
-        y: '100%',
-        delay: 1.5,
-        duration: 1.0,
-        autoAlpha: 0,
-        scrollTrigger: {
-            trigger: "#title03",
-            start: "top 80%",
-    }
-    });
 
     gsap.fromTo('#searchStation', { 
         x: '-400%'
         },
         {
         x:0,
-        delay: 2.0,
+        delay: 1.0,
         duration: 2.0,
         ease: 'power2.out',
         autoAlpha: 1,
         clearProps: 'transform',
         scrollTrigger: {
-            trigger: "#title03",
+            trigger: "#searchStation",
             start: "top 80%",
         }
     });

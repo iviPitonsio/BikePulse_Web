@@ -2,4 +2,25 @@
 
 body {
   white-space: pre-line;
+  background: #1d8b6f;
+  color: white;
+  font-family: 'valve', sans-serif;
+}
+
+.card{
+  background-color: black; 
+  border: 1px solid;
+  border-radius: 15px;
+  border-color: white;
+  padding: 15px;
+  visibility: hidden;
+}
+
+@font-face {
+    font-family: 'Valve';
+    src: url(../fonts/Valve.otf);
+}
+
+.title {
+    visibility: hidden;
 }

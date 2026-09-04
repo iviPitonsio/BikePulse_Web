@@ -3,49 +3,62 @@ import Layout from '../layouts/Layout.astro';
 
 ---
 
-<Layout>
-    <div class="flex flex-col text-center items-center mt-15 gap-5">
+<Layout> 
 
-        <h1 id="stationTitle" class="font-bold md:text-6xl lg:text-6xl text-5xl"/>
-        <span id="color_bar" class="invisible h-1 rounded-full md:w-75 lg:w-75 w-55 bg-blue-600 shadow-[0_0_12px_#52BAFF,0_0_12px_#52BAFF]"/>
+    <div class="w-full max-w-[75%] md:max-w-full mx-auto px-2 gap-25">
+        <div class="flex flex-col text-center items-center mt-15 gap-5">
 
-        <p id="date"/> 
+            <h1 id="stationTitle" class="title font-bold md:text-6xl lg:text-6xl text-5xl"/>
 
-        <div id="info" class="grid grid-cols-3 justify-items-center text-center md:text-3xl lg:text-3xl text-1xl font-bold w-full max-w-7xl h-full mt-15 md:gap-30 lg:gap-30 gap-25">
+            <p id="date" class="text mt-10 text-2xl"/> 
 
-            <p id="availableBikes"/>
-            <p id="renting"/>
-            <p id="returning"/>       
+            <div id="info" class="grid md:grid-cols-3 lg:grid-cols-3 grid-cols-1 justify-items-center text-center md:text-3xl lg:text-3xl text-1xl font-bold w-full max-w-7xl h-full mt-10 md:gap-30 lg:gap-30 gap-5">
+
+                <p id="availableBikes" class="card" data-trigger="inmediate"/>
+                <p id="availableDocks" class="card" data-trigger="inmediate"/>
+                <p id="capacity" class="card" data-trigger="inmediate"/>   
+
+            </div>
+
+            <div id="info" class="grid grid-cols-2 justify-items-center text-center md:text-3xl lg:text-3xl text-1xl font-bold w-full max-w-7xl h-full lg:mt-35 md:mt-25 md:gap-30 lg:gap-30 gap-5">
+
+                <p id="renting" class="card" data-trigger="inmediate"/>
+                <p id="returning" class="card" data-trigger="inmediate"/> 
+
+            </div>
+
+            
+
+            <h2 class="text font-bold md:text-5xl lg:text-5xl text-4xl mt-25"> Datos:</h2>
+            
+            <div class="grid grid-cols-2 justify-items-center text-center md:text-3xl lg:text-3xl text-1xl font-bold w-full max-w-7xl h-full lg:mt-15 md:mt:15 mt-5 md:gap-30 lg:gap-30 gap-15">
+
+                <p id="address" class="card" data-trigger="scroll"/>
+                <p id="post_code" class="card" data-trigger="scroll"/>
+                <p id="is_charging_station" class="card" data-trigger="scroll"/>    
+                <p id="is_virtual_station" class="card" data-trigger="scroll"/>
+
+            </div>
+
+            <h2 class="title font-bold md:text-5xl lg:text-5xl text-4xl mt-15"> Disponibilidad de bicicletas:</h2>
+            <canvas id="stationChart" class="card w-full h-full md:max-h-[25%] lg:max-h-[25%] max-h-[15%] md:max-w-[65%] lg:md:max-w-[65%] md:md:max-w-[65%] max-w-full mx-auto mt-5"/>
+
+            <h2 class="title font-bold md:text-5xl lg:text-5xl text-4xl mt-5"> Historial</h2>
+            <div id="status" class="text flex flex-col gap-5"/>
 
         </div>
 
-        <h1 id="data" class="font-bold md:text-5xl lg:text-5xl text-4xl mt-25"> Datos Básicos:</h1>
-        <span id="color_bar" class="invisible h-1 rounded-full md:w-75 lg:w-75 w-55 bg-blue-600 shadow-[0_0_12px_#52BAFF,0_0_12px_#52BAFF]"/>
-
-        <div id="basicInfo" class="grid grid-cols-3 justify-items-center text-center md:text-3xl lg:text-3xl text-1xl font-bold w-full max-w-7xl h-full mt-15 md:gap-30 lg:gap-30 gap-25">
-
-            <p id="address"/>
-            <p id="capacity"/>
-            <p id="is_charging_station"/>    
-            <p id="is_virtual_station"/>
-            <p id="post_code"/> 
-
+        <div class="ml-40 mt-15 text-left font-bold md:text-3xl lg:text-3xl text-2xl hover:underline">
+            <a href="/" > Volver</a>
         </div>
-
-        <h1 id="data" class="font-bold md:text-5xl lg:text-5xl text-4xl mt-25"> ¡Consulta su historial!</h1>
-        <span id="color_bar" class="invisible h-1 rounded-full md:w-75 lg:w-75 w-55 bg-blue-600 shadow-[0_0_12px_#52BAFF,0_0_12px_#52BAFF]"/>
-
-        <a href="/services" class="block text-white font-bold p-3 bg-black border border-white rounded-4xl transition-all duration-300 hover:scale-105 mt-5"> Historial</a>
-
-        <div id="status" class="flex flex-col gap-5"/>
-
-        <canvas id="stationChart" class="w-full h-full max-w-[65%] mx-auto"/>
 
     </div>
+
 </Layout>
 
 <script type="module">
 
 import '../scripts/station.js';
+import '../scripts/animations.js';
 
 </script>
