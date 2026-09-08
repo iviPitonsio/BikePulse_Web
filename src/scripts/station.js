@@ -1,9 +1,10 @@
 import Chart from 'chart.js/auto';
+import { API_URL } from './config.js';
 
 const params = new URLSearchParams(window.location.search); // Obtener los parámetros de la URL
 const stationId = params.get('station_id'); // Obtener el valor del parámetro 'station_id' y lo guardamos en una variable
 
-const responseStationStatus = await fetch(`http://localhost:8080/station/${stationId}/status`); // obtenemos los datos de la estación desde el backend
+const responseStationStatus = await fetch(`${API_URL}/station/${stationId}/status`); // obtenemos los datos de la estación desde el backend
 const dataStationStatus = await responseStationStatus.json();
 
 
@@ -62,7 +63,7 @@ function formatearFecha(fecha) {
 
 
 // Mostramos los datos básicos de cada estación
-const responseStation = await fetch(`http://localhost:8080/station/${stationId}`); // obtenemos los datos de la estación desde el backend
+const responseStation = await fetch(`${API_URL}/station/${stationId}`); // obtenemos los datos de la estación desde el backend
 const dataStation = await responseStation.json();
 
 const stationAddress = document.getElementById('address');
@@ -97,7 +98,7 @@ const stationPostCode = document.getElementById('post_code');
 
 
 // Mostramos el historial de cada estación
-const responseStationHistory = await fetch(`http://localhost:8080/station/${stationId}/history`); // obtenemos los datos de la estación desde el backend
+const responseStationHistory = await fetch(`${API_URL}/station/${stationId}/history`); // obtenemos los datos de la estación desde el backend
 const dataStationHistory = await responseStationHistory.json();
 
 dataStationHistory.forEach((estado) => {

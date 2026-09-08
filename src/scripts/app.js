@@ -1,5 +1,7 @@
+import { API_URL } from './config.js';
+
 // Definimos el resumen de la red
-const responseSummary = await fetch('http://localhost:8080/station/summary');
+const responseSummary = await fetch(`${API_URL}/station/summary`);
 const dataSummary = await responseSummary.json();
 
 
@@ -13,7 +15,7 @@ document.getElementById('capacidad_total').textContent = 'Capacidad total: ' + d
 
 
 // Definimos el ranking de las estaciones con más bicis disponibles
-const responseRanking = await fetch('http://localhost:8080/station/ranking');
+const responseRanking = await fetch(`${API_URL}/station/ranking`);
 const dataRanking = await responseRanking.json();
 let i = 1;
 
@@ -30,7 +32,7 @@ dataRanking.forEach(estacion => {
 
 
 // Definimos las estaciones que están llenas
-const responseFullStations = await fetch('http://localhost:8080/station/full');
+const responseFullStations = await fetch(`${API_URL}/station/full`);
 const dataFullStations = await responseFullStations.json();
 
 dataFullStations.forEach(estacion => {
@@ -46,7 +48,7 @@ dataFullStations.forEach(estacion => {
 
 
 // Definimos las estaciones que están vacías
-const responseEmptyStations = await fetch('http://localhost:8080/station/empty');
+const responseEmptyStations = await fetch(`${API_URL}/station/empty`);
 const dataEmptyStations = await responseEmptyStations.json();
 
 dataEmptyStations.forEach(estacion => {
@@ -62,7 +64,7 @@ dataEmptyStations.forEach(estacion => {
 
 
 // Mostramos todas las estaciones en la lista y filtramos
-const responseStations = await fetch('http://localhost:8080/stations');
+const responseStations = await fetch(`${API_URL}/stations`);
 const dataStations = await responseStations.json();
 
 
@@ -97,7 +99,7 @@ function createStationElement(resultado) {
     stationsContainer.innerHTML = ''; // Limpiamos el contenedor antes de agregar los elementos filtrados
     resultado.forEach(async estacion => {
        
-        const responseStationStatus = await fetch(`http://localhost:8080/station/${estacion.station_id}/status`); // obtenemos los datos de la capacidad desde el backend
+        const responseStationStatus = await fetch(`${API_URL}/station/${estacion.station_id}/status`); // obtenemos los datos de la capacidad desde el backend
         const dataStationStatus = await responseStationStatus.json();
 
         const elemento = document.createElement('a'); // creamos un botón para cada estación
