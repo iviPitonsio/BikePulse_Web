@@ -35,21 +35,30 @@ dataRanking.forEach(estacion => {
 const responseFullStations = await fetch(`${API_URL}/station/full`);
 const dataFullStations = await responseFullStations.json();
 
-dataFullStations.forEach(estacion => {
+if(dataFullStations.length > 0){
+    dataFullStations.forEach(estacion => {
 
-    const elemento = document.createElement('li'); // creamos el contenedor de cada una de las estaciones
+        const elemento = document.createElement('li'); // creamos el contenedor de cada una de las estaciones
 
-    elemento.textContent = estacion.name + ': ' + estacion.availableBikes + ' 🚲';
+        elemento.textContent = estacion.name + ': ' + estacion.availableBikes + ' 🚲';
+        document.getElementById('full-stations').appendChild(elemento);
+        i++;
+
+    });
+
+}else{
+    const elemento = document.createElement('li');
+    elemento.textContent = "No hay estaciones llenas";
     document.getElementById('full-stations').appendChild(elemento);
-    i++;
-
-});
+}
 
 
 
 // Definimos las estaciones que están vacías
 const responseEmptyStations = await fetch(`${API_URL}/station/empty`);
 const dataEmptyStations = await responseEmptyStations.json();
+
+if(dataEmptyStations.length > 0){
 
 dataEmptyStations.forEach(estacion => {
 
@@ -60,6 +69,12 @@ dataEmptyStations.forEach(estacion => {
     i++;
 
 });
+
+}else{
+    const elemento = document.createElement('li');
+    elemento.textContent = "No hay estaciones vacías";
+    document.getElementById('empty-stations').appendChild(elemento);
+}
 
 
 
