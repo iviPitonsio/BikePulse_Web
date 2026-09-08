@@ -169,7 +169,7 @@ function createStationElement(resultado) {
         progress.style.backgroundColor = colorBar;
 
 
-        elemento.href = "/station.html?station_id=" + estacion.station_id; // redirigimos a la página de la estación con el id de la estación en la url
+        elemento.href = "/station.astro?station_id=" + estacion.station_id; // redirigimos a la página de la estación con el id de la estación en la url
     
     });
 }
