@@ -1,15 +1,31 @@
 import { API_URL } from './config.js';
 
-// Definimos el resumen de la red
-const responseSummary = await fetch(`${API_URL}/station/summary`);
-const dataSummary = await responseSummary.json();
 
+// Definimos el resumen de la red y creamos la pantalla de carga por si no obtenemos los datos
+const loading = document.getElementById('loading');
 
-document.getElementById('estaciones_totales').textContent = 'Estaciones totales: ' + dataSummary.totalStations;
-document.getElementById('estaciones_activas').textContent = 'Estaciones operativas: ' + dataSummary.activeStations;
-document.getElementById('bicis_totales').textContent = 'Bicis libres: ' + dataSummary.bikesAvailable;
-document.getElementById('huecos_totales').textContent = 'Huecos libres: ' + dataSummary.docksAvailable;
-document.getElementById('capacidad_total').textContent = 'Capacidad total: ' + dataSummary.totalCapacity;
+try{
+
+    const responseSummary = await fetch(`${API_URL}/station/summary`);
+
+    if (!responseSummary.ok) { // Si los datos no llegan
+        throw new Error('Error al obtener el resumen de la red');
+    }
+
+    const dataSummary = await responseSummary.json();
+
+    document.getElementById('estaciones_totales').textContent = 'Estaciones totales:\n ' + dataSummary.totalStations;
+    document.getElementById('estaciones_activas').textContent = 'Estaciones operativas:\n ' + dataSummary.activeStations;
+    document.getElementById('bicis_totales').textContent = 'Bicis libres: ' + dataSummary.bikesAvailable;
+    document.getElementById('huecos_totales').textContent = 'Huecos libres: ' + dataSummary.docksAvailable;
+    document.getElementById('capacidad_total').textContent = 'Capacidad total: ' + dataSummary.totalCapacity;
+
+    loading.style.display = 'none';
+
+}catch(error){
+    console.log(error)
+    loading.style.display = 'block';
+}
 
 
 
@@ -169,8 +185,7 @@ function createStationElement(resultado) {
         progress.style.backgroundColor = colorBar;
 
 
-        elemento.href = "/station.astro?station_id=" + estacion.station_id; // redirigimos a la página de la estación con el id de la estación en la url
+        elemento.href = "/station?station_id=" + estacion.station_id; // redirigimos a la página de la estación con el id de la estación en la url
     
     });
 }
-

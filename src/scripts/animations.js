@@ -5,7 +5,7 @@ gsap.registerPlugin(ScrollTrigger);
 function getTriggerConfig(el) { // Determinamos el tipo de trigger del elemento
         const triggerType = el.dataset.trigger; // 'immediate' | 'scroll'
 
-        if (triggerType === 'immediate') {
+        if (triggerType === 'inmediate') {
             return {
                 trigger: el,
                 start: "top 100%", // se dispara nada mas asomar al viewport

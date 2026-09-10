@@ -5,13 +5,14 @@ import Ranking from '../components/Ranking.astro';
 import StationList from '../components/StationList.astro';
 import FullStations from '../components/FullStations.astro';
 import EmptyStations from '../components/EmptyStations.astro';
-
+import Loading from '../components/Loading.astro';
 ---
-
 <Layout>
 	
+<Loading/>
+
 	<div class="w-full max-w-[75%] md:max-w-full mx-auto px-2 gap-25">
-	
+
 		<Summary/>
 
 			<div class="mt-25"/>
